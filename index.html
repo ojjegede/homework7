@@ -1,1 +1,108 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Drawing Area</title>
+<!-- You can add your style here rather than in an external style sheet. -->
+<style>
+	canvas {
+	    border:5px solid #d3d3d3;
+	    background-color: #f1f1f1;
+	    display: block;
+	}
+</style>
+</head>
+<body>
+    <!-- DO NOT MODIFY THIS HTML -->
+    <canvas id = "myCanvas" width = "350" height = "500"  ></canvas>
+    <input type = "color" id = "picker"/>
+</body>
+<script>
+	var canvas = document.getElementById("myCanvas");
+	var picker = document.querySelector("#picker")
+	var ctx = canvas.getContext("2d");
+	var color = 'black';
+	var pen = true;
+	ctx.fillStyle = color;
+	canvas.width = window.innerWidth *.8;
+	canvas.height = window.innerHeight *.8;
+	function draw(posX, posY){
+		console.log("drawing");
+		ctx.fillStyle = color;
+		ctx.beginPath();
+		ctx.arc(posX, posY, 10, 0, 2 * Math.PI);
+		ctx.fill();
+	}
+	myCanvas.addEventListener(
+		'mousemove',function(e){
+			console.log(e.x);
+			console.log(e.y);
+			posX = e.x - this.offsetLeft - 5;
+			posY = e.y  - this.offsetTop - 4.5;
+			if (pen == true){
+				draw(posX, posY);
+			}
+		}
+	)
+	window.addEventListener(
+		'keydown',function(e){
+			console.log(e);
+			if(event.which ==66){
+				color = 'blue';
+			}
+		}
+	)
+	window.addEventListener(
+		'keydown',function(e){
+			console.log(e);
+			if(event.which ==82){
+				color = 'red';
+			}
+		}
+	)
+	window.addEventListener(
+		'keydown',function(e){
+			console.log(e);
+			if(event.which == 71){
+				color = 'green';
+			}
+		}
+	)
+	window.addEventListener(
+		'keydown',function(e){
+			console.log(e);
+			if(event.which == 89){
+				color = 'yellow';
+			}
+		}
+	)
+	window.addEventListener(
+		'keydown',function(e){
+			if(event.which ==32){
+				ctx.clearRect(0, 0, canvas.width, canvas.height)
+			}
+		}
+	)
+	window.addEventListener(
+		'keydown',function(e){
+			console.log(e);
+			if(event.which ==38){
+				pen = false;
+			}
+		}
+	)
+	window.addEventListener(
+		'keydown',function(e){
+			console.log(e);
+			if(event.which == 40){
+				pen = true;
+			}
+		}
+	)
+// up 38 down 40
+picker.onchange = function(){
+	color = picker.value;
+}
+</script>
+</html>
