@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Olajide's Drawing Canvas</title>
+<title>Drawing Area</title>
 <!-- You can add your style here rather than in an external style sheet. -->
 <style>
 	canvas {
@@ -26,6 +26,8 @@
 	ctx.fillStyle = color;
 	canvas.width = window.innerWidth *.8;
 	canvas.height = window.innerHeight *.8;
+	draw();
+	
 	function draw(posX, posY){
 		console.log("drawing");
 		ctx.fillStyle = color;
@@ -104,3 +106,4 @@ picker.onchange = function(){
 }
 </script>
 </html>
+
